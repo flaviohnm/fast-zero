@@ -1,4 +1,5 @@
 from http import HTTPStatus
+from fast_zero.security import settings
 
 
 def test_get_token(client, user):
@@ -26,7 +27,7 @@ def test_get_token_with_not_found_user(client, user):
 
 def test_get_token_with_wrong_password(client, user):
     response = client.post(
-        '/auth/token', data={'username': user.email, 'password': 'test123'}
+        '/auth/token', data={'username': user.email, 'password': settings.PASSWORD}
     )
     # token = response.json()
 
